@@ -1,5 +1,6 @@
 // Basic expressions, no environments yet
 // `cargo run`
+// Not gonna be merged I'm just learning Rust stuff
 use std::num::ParseFloatError;
 use std::collections::HashMap;
 
