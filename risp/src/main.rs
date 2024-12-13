@@ -26,6 +26,7 @@ struct RispEnv {
     data: HashMap<String, RispExp>,
 }
 
+// basically allows the struct to be displayed as a string (`to_string` equivalent)
 impl fmt::Display for RispExp {
   fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
     let str = match self {
@@ -45,6 +46,7 @@ impl fmt::Display for RispExp {
   }
 }
 
+// repl loop
 fn main() {
     let env = &mut default_env();
   loop {
@@ -59,6 +61,7 @@ fn main() {
   }
 }
 
+// allows for built in fns and variables and stuff
 fn default_env() -> RispEnv {
     let mut data: HashMap<String, RispExp> = HashMap::new();
 
@@ -87,6 +90,8 @@ fn default_env() -> RispEnv {
 
     RispEnv { data }
 }
+
+// evaluation stuff
 
 fn eval(exp: &RispExp, env: &RispEnv) -> Result<RispExp, RispErr> {
   match exp {
@@ -122,6 +127,8 @@ fn eval(exp: &RispExp, env: &RispEnv) -> Result<RispExp, RispErr> {
     ),
   }
 }
+
+// parsing related stuff
 
 fn tokenize(expr: String) -> Vec<String> {
     expr.replace("(", " ( ")
